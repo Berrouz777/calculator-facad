@@ -3,6 +3,9 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+  // Для GitHub Pages: если репозиторий называется не "username.github.io",
+  // раскомментируйте и укажите имя репозитория:
+  // base: '/calculator/',
   plugins: [vue()],
   resolve: {
     alias: {
