@@ -1,0 +1,66 @@
+@use '@/styles/shared/_variables.scss' as *;
+@use '@/styles/shared/_mixins.scss' as *;
+
+.accessory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  @include respond-to(sm) {
+    grid-template-columns: 1fr;
+    gap: .8rem;
+  }
+}
+
+.accessory-item {
+  position: relative;
+  border: 1px solid $base-200;
+  border-radius: 12px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: start;
+  transition: border-color $default-transition;
+
+  &__checkmark {
+    margin-top: .2rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.4rem;
+  }
+
+  &__description {
+    margin: 0;
+    color: $base-400;
+    font-size: 1.2rem;
+  }
+
+  &__price {
+    margin-top: .2rem;
+    font-weight: 600;
+    color: $blue;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  &--checked {
+    border-color: $blue;
+    background-color: rgba($blue, .02);
+  }
+}
+

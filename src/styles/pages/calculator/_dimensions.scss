@@ -1,0 +1,70 @@
+@use '@/styles/shared/_variables.scss' as *;
+@use '@/styles/shared/_mixins.scss' as *;
+
+.dimensions-control {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    border: 1px solid $base-225;
+    border-radius: 12px;
+    padding: .4rem 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    transition: border-color $default-transition;
+
+    &:focus-within {
+      border-color: $blue;
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      background: transparent;
+      font-size: 1.4rem;
+      padding: .6rem 0;
+      width: 100%;
+      max-width: 100%;
+      transition: color $default-transition;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    span {
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      color: $base-350;
+      margin-left: .8rem;
+    }
+
+    @include hover {
+      border-color: rgba($blue, .3);
+    }
+  }
+
+  &__separator {
+    font-size: 1.6rem;
+    color: $base-350;
+    font-weight: 700;
+  }
+}
+

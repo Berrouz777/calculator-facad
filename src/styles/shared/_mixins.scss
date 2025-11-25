@@ -1,0 +1,149 @@
+/* stylelint-disable */
+
+@use "./_variables.scss" as *;
+@use "./_functions.scss" as *;
+
+@mixin aspect-ratio($width, $height) {
+    &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-top: calc($height / $width) * 100%;
+    }
+
+    & > .aspect-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@mixin respond-to($name, $bp: $breakpoints) {
+    $max: breakpoint-max($name, $bp);
+
+    @if $max {
+        @media (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin respond-to-custom($width) {
+    @media (max-width: $width) {
+        @content;
+    }
+}
+
+@mixin font($alias, $name, $weight) {
+    @font-face {
+        font-family: $alias;
+        src: url("~~/common/assets/fonts/" + $name + ".woff") format("woff"),
+        url("~~/common/assets/fonts/" + $name + ".woff2") format("woff2");
+        font-weight: $weight;
+        font-style: normal;
+        font-display: swap;
+    }
+}
+
+@mixin hover {
+    @media (hover), (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+@mixin reset-text-styles {
+    & p {
+        margin-top: 1em;
+        margin-bottom: 1em;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    & ul {
+        margin-top: .4em;
+        margin-bottom: .4em;
+        padding-left: 2.6em;
+    }
+
+    & li {
+        margin-bottom: .4em;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &:before {
+            content: "\2022";
+            display: inline-block;
+            width: 1.2em;
+            margin-left: -1.24em;
+            font-size: 1.2em;
+            font-weight: bold;
+            line-height: 1;
+            color: #38adc2;
+        }
+    }
+}
+
+@mixin centerer {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin center-x {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin center-y {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin ellipsis($lineHeight, $lines: 2) {
+    overflow: hidden;
+    display: block; /* Fallback for non-webkit */
+    // Webkit solution for multiline ellipsis
+    display: -webkit-box;
+    max-height: $lineHeight * $lines;
+    text-overflow: ellipsis;
+
+    @supports (-webkit-line-clamp: 4) and (-webkit-box-orient: vertical) {
+
+        /*! autoprefixer: off */
+        -webkit-box-orient: vertical;
+
+        /*! autoprefixer: on */
+        -webkit-line-clamp: $lines;
+    }
+
+    // Solution for Opera
+    // text-overflow: -o-ellipsis-lastline;
+}
+
+// Миксин, расчитывающий ширину колонок для таблиц, в переменной $percent расчитывается ширина колонки в процентах,
+// при этом отнимаю 1 процент, чтобы суммарно ширина всех колонок была меньше 100%, а расстояние добавляется за счёт justify-content
+
+@mixin calcGridColumns($countColumn) {
+    $percent: floor(calc(100 / $countColumn) - 1) * 1%;
+    display: grid;
+    grid-template-columns: repeat($countColumn, $percent);
+    justify-content: space-between;
+}
+
+
+/* stylelint-enable */
+

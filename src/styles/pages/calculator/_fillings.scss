@@ -1,0 +1,104 @@
+@use '@/styles/shared/_variables.scss' as *;
+@use '@/styles/shared/_mixins.scss' as *;
+
+.filling-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: .8rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  &--disabled {
+    opacity: .4;
+    pointer-events: none;
+  }
+}
+
+.filling-custom {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 1rem;
+
+  &__divider {
+    width: 100%;
+    height: 1px;
+    background-color: $base-200;
+  }
+}
+
+.filling-item {
+  position: relative;
+  border: 1px solid $base-200;
+  border-radius: 12px;
+  padding: .8rem 1rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .8rem;
+  align-items: center;
+  min-height: 50px;
+  cursor: pointer;
+  transition: border-color $default-transition, background-color $default-transition;
+
+  @include hover {
+    border-color: rgba($blue, .4);
+    background-color: rgba($blue, .02);
+  }
+
+  &:focus-within {
+    border-color: $blue;
+    outline: none;
+  }
+
+  &__checkmark {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    &--empty {
+      width: 20px;
+      height: 20px;
+      border: 2px solid $base-200;
+      border-radius: 50%;
+      background-color: transparent;
+      flex-shrink: 0;
+    }
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.4rem;
+  }
+
+  &--checked {
+    border-color: $blue;
+    background-color: rgba($blue, .02);
+  }
+
+  &--standalone {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+

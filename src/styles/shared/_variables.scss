@@ -1,0 +1,102 @@
+/* Breakpoints: From xs to sm, from sm to md, from md to lg, after that simple desktop */
+$breakpoints: (
+    xs: 0,
+    sm: 945px,
+    md: 1280px,
+    lg: 1440px,
+    xl: 1920px,
+);
+
+/* Colors */
+$base-0: #fff;
+$base-20: #f4f4f4;
+$base-50: #f6f6f6;
+$base-100: #eaeaea;
+$base-110: #eaeaeab8;
+$base-150: #e4e4e4;
+$base-200: #d1d2d2;
+$base-225: #d9d9d9;
+$base-250: #e2e2e3;
+$base-300: #606060;
+$base-350: #a7a7a7;
+$base-375: #a3a4a5;
+$base-400: #757777;
+$base-450: #8c94a8;
+$base-500: #46494a;
+$base-600: #181c1d;
+$base-700: #131617;
+$base-800: #0f1111;
+$base-900: #0a0b0c;
+$base-950: #2d2d2d;
+$base-1000: #212121;
+$black: #000;
+$violet: #643aa8;
+$purple: #a83a96;
+$green: #38c298;
+$red: #da2020;
+$orange: #f90;
+$light-green: #68cc58;
+$primary-500: #009eae;
+$primary-600: #04a4b5;
+$blue: #38adc2;
+$blue-secondary: rgba(#38adc2, .8);
+$blue-hover: #3dbad0;
+$white-16: rgba($base-0, .16);
+$white-20: rgba($base-0, .2);
+$white-24: rgba($base-0, .24);
+$white-40: rgba($base-0, .4);
+$white-48: rgba($base-0, .48);
+$white-84: rgba($base-0, .84);
+$error: #cb4343;
+
+/* Gradients */
+$blue-gradient: radial-gradient(66.56% 66.56% at 50% 50%, #030e35 0%, #2d6a82 56.25%, #8bc2c5 100%);
+$grey-gradient: linear-gradient(180deg, rgb(10 11 12 / 0%) 0%, #0a0b0c 100%);
+
+/* Fonts */
+$base-font: "Ruberoid", sans-serif;
+$accent-font-family: "Montserrat", sans-serif;
+$rouble-font-family: "PT-Rouble-Sans", sans-serif;
+$font-size: 1.4rem;
+$body-color: #0f1111;
+$body-bg: #fff;
+
+/* Grid */
+$container-width: 1920px;
+$secondary-container-width: 1440px;
+$header-z-index: 20;
+
+/* Spacing */
+$border-radius: 4px;
+
+/* Transitions */
+$default-transition: .3s ease;
+$default-color-transition: .2s ease;
+
+/* Pdf page */
+$pdf-height: 1120px;
+$pdf-width: 792px;
+$pdf-diff: 1.33;
+$box-shadow: 0 0 4px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 6%);
+
+/* vh variables for mobile devices */
+:root {
+    --vh: 1vh;
+    --vh-full-page: 100vh;
+}
+
+:export {
+    base-0: $base-0;
+    base-50: $base-50;
+    base-100: $base-100;
+    base-200: $base-200;
+    base-300: $base-300;
+    base-400: $base-400;
+    base-500: $base-500;
+    base-600: $base-600;
+    base-700: $base-700;
+    base-800: $base-800;
+    base-900: $base-900;
+    base-1000: $base-1000;
+}
+
