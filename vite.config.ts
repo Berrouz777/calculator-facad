@@ -10,7 +10,6 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@img': path.resolve(__dirname, './src/img'),
-      '@ui': path.resolve(__dirname, '../frontend/common/components/ui'),
       '@styles': path.resolve(__dirname, './src/styles'),
     },
   },
@@ -23,14 +22,6 @@ export default defineConfig({
           @use "@styles/shared/_mixins.scss" as *;
         `,
       },
-    },
-  },
-  server: {
-    fs: {
-      allow: [
-        path.resolve(__dirname),
-        path.resolve(__dirname, '../frontend'),
-      ],
     },
   },
   build: {
