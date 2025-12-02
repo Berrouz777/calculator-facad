@@ -100,7 +100,7 @@ export const calculatorConfig: FacadeCalculatorConfig = {
     },
     {
       id: 'weights',
-      label: 'Под веса',
+      label: 'Отверстие подвеса',
       requiresQuantity: true,
       minQuantity: 1,
       defaultQuantity: 2,
@@ -140,11 +140,11 @@ export const calculatorConfig: FacadeCalculatorConfig = {
   fillings: {
     catalogLabel: 'Каталог наполнений',
     items: [
-      { id: 'clearGlass', label: 'Зеркало', pricePerSqM: priceBook.fillings.clearGlass },
-      { id: 'ultraClear', label: 'Стекло', pricePerSqM: priceBook.fillings.ultraClear },
-      { id: 'graphiteGlass', label: 'Графит', pricePerSqM: priceBook.fillings.graphiteGlass },
-      { id: 'bronzeGlass', label: 'Бронза', pricePerSqM: priceBook.fillings.bronzeGlass },
-      { id: 'mirrorSilver', label: 'Сатин', pricePerSqM: priceBook.fillings.mirrorSilver },
+      { id: 'clearGlass', label: 'Зеркало (Серебро)', pricePerSqM: priceBook.fillings.clearGlass },
+      { id: 'ultraClear', label: 'Стекло (Б/Ц)', pricePerSqM: priceBook.fillings.ultraClear },
+      { id: 'graphiteGlass', label: 'Стекло (Графит)', pricePerSqM: priceBook.fillings.graphiteGlass },
+      { id: 'bronzeGlass', label: 'Стекло (Бронза)', pricePerSqM: priceBook.fillings.bronzeGlass },
+      { id: 'mirrorSilver', label: 'Стекло Сатин (Б/Ц)', pricePerSqM: priceBook.fillings.mirrorSilver },
     ],
     customOption: {
       id: 'clientGlass',

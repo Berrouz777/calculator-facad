@@ -29,7 +29,7 @@
           class="filling-item__checkmark filling-item__checkmark--empty"
         />
         <div>
-          <p class="filling-item__title">{{ item.label }}</p>
+          <p class="filling-item__title" v-html="item.label"/>
         </div>
         <input
           v-model="selectedItemsModel"

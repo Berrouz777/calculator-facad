@@ -14,7 +14,7 @@
   }
 
   &--color {
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 }
 
@@ -139,8 +139,10 @@
   }
 
   &__swatch {
-    width: 28px;
-    height: 28px;
+    width: 4.8rem;
+    min-width: 4.8rem;
+    height: 4.8rem;
+    min-height: 4.8rem;
     border-radius: 50%;
     border: 1px solid $base-200;
     pointer-events: none;

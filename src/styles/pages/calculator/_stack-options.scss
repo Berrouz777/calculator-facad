@@ -79,7 +79,7 @@
     font-size: 1.6rem;
 
     @include respond-to-custom(680px) {
-      width: 50%;
+      width: 40%;
     }
 
     &:focus {
