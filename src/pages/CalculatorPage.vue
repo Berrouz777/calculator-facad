@@ -1,7 +1,7 @@
 <template>
   <section class="facade-calculator">
     <header class="facade-calculator__header">
-      <h1 class="facade-calculator__eyebrow">Калькулятор фасада</h1>
+      <h1 class="facade-calculator__eyebrow">Калькулятор стоимости фасада</h1>
     </header>
 
     <div class="facade-calculator__layout">
