@@ -31,9 +31,20 @@
   &__eyebrow {
     text-transform: uppercase;
     letter-spacing: .2em;
-    font-size: 1.2rem;
-    color: $blue;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: $base-800;
     margin: 0 auto;
+
+    @include respond-to(md) {
+      font-size: 1.6rem;
+    }
+
+    @include respond-to(sm) {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
   }
 
   &__layout {
