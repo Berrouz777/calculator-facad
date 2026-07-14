@@ -2,17 +2,16 @@
   <section class="calculator-summary">
     <header class="calculator-summary__header">
       <p class="calculator-summary__eyebrow">Итого</p>
-      <p class="calculator-summary__total">{{ formatCurrency(props.results.total) }}</p>
+      <p class="calculator-summary__total">{{ formatCurrency(total) }}</p>
     </header>
   </section>
 </template>
 
 <script setup lang="ts">
-import type { CalculatorResults } from '@/types/calculator';
 import { formatCurrency } from '@/utils/number';
 
-const props = defineProps<{
-  results: CalculatorResults;
+defineProps<{
+  total: number;
 }>();
 </script>
 

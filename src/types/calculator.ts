@@ -1,24 +1,3 @@
-export type CalculatorFieldType = 'number' | 'select';
-
-export interface CalculatorOption {
-  label: string;
-  value: number | string;
-}
-
-export interface CalculatorField {
-  id: string;
-  label: string;
-  type: CalculatorFieldType;
-  defaultValue: number | string | boolean;
-  placeholder?: string;
-  suffix?: string;
-  min?: number;
-  max?: number;
-  step?: number;
-  options?: CalculatorOption[];
-  description?: string;
-}
-
 export interface DimensionFieldConfig {
   id: string;
   label: string;
@@ -34,7 +13,14 @@ export interface ProfileOption {
   label: string;
   description?: string;
   image: string;
-  pricePerSqM: number;
+}
+
+export interface AdditionalProfileOption {
+  id: string;
+  label: string;
+  image: string;
+  price: number;
+  requiredProfileId: string;
 }
 
 export interface ColorOption {
@@ -42,9 +28,9 @@ export interface ColorOption {
   label: string;
   swatch: string;
   pricePerMeterByProfile: {
-    slim: number;
-    quadro: number;
-    wide: number;
+    pf_01: number;
+    pf_02: number;
+    pf_03: number;
   };
 }
 
@@ -74,9 +60,9 @@ export interface MillingOption {
   defaultQuantity?: number;
   pricePerUnit?: number;
   pricePerUnitByProfile?: {
-    slim: number;
-    quadro: number;
-    wide: number;
+    pf_01: number;
+    pf_02: number;
+    pf_03: number;
   };
 }
 
@@ -114,8 +100,8 @@ export interface FacadeCalculatorConfig {
     height: DimensionFieldConfig;
     width: DimensionFieldConfig;
   };
-  basePricePerSqM: number;
   profiles: ProfileOption[];
+  additionalProfiles: AdditionalProfileOption[];
   colors: ColorOption[];
   accessories: AccessoryOption[];
   milling: MillingOption[];
@@ -129,6 +115,7 @@ export interface CalculatorFormState {
   height: number | null;
   width: number | null;
   profileId: string;
+  additionalProfileId: string;
   colorId: string;
   milling: {
     mode: MillingMode | '';
@@ -140,16 +127,5 @@ export interface CalculatorFormState {
   };
   fillingMode: FillingMode;
   fillingItems: string[];
-}
-
-export interface CalculatorBreakdownItem {
-  id: string;
-  label: string;
-  value: number;
-}
-
-export interface CalculatorResults {
-  total: number;
-  breakdown: CalculatorBreakdownItem[];
 }
 

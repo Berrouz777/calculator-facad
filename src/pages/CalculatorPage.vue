@@ -14,11 +14,14 @@
 
         <CalculatorProfileSection
           :profiles="config.profiles"
+          :additional-profiles="config.additionalProfiles"
+          :additional-profiles-disabled="formState.profileId !== 'pf_03'"
           v-model="formState.profileId"
+          v-model:additional-profile="formState.additionalProfileId"
         />
 
         <CalculatorColorSection
-          :colors="config.colors"
+          :colors="availableColors"
           v-model="formState.colorId"
         />
 
@@ -44,7 +47,7 @@
 
       <CalculatorSummary
         v-if="isSummaryVisible"
-        :results="results"
+        :total="totalCost"
       />
     </div>
   </section>
@@ -60,9 +63,15 @@ import CalculatorHingesSection from '@/components/calculator/CalculatorHingesSec
 import CalculatorFillingsSection from '@/components/calculator/CalculatorFillingsSection.vue';
 import CalculatorSummary from '@/components/CalculatorSummary.vue';
 import { calculatorConfig as config } from '@/data/calculatorFields';
-import type { CalculatorFormState, CalculatorResults, HingeOption, MillingOption } from '@/types/calculator';
+import type { CalculatorFormState, HingeOption, MillingOption } from '@/types/calculator';
 
 const ASSEMBLY_COST = 1500;
+const ADDITIONAL_PROFILE_COLOR_IDS = new Set([
+  'black',
+  'black_brush_matte',
+  'gold_anode',
+  'brass',
+]);
 
 const normalizeDimension = (value: number | null) =>
   typeof value === 'number' && Number.isFinite(value) ? value : 0;
@@ -71,6 +80,7 @@ const createInitialState = (): CalculatorFormState => ({
   height: null,
   width: null,
   profileId: '',
+  additionalProfileId: '',
   colorId: '',
   milling: {
     mode: '',
@@ -145,9 +155,25 @@ watch(
 watch(
   () => formState.profileId,
   (profileId) => {
-    if (profileId === 'slim') {
+    if (profileId === 'pf_01') {
       formState.hinges.mode = '';
       formState.hinges.quantity = 0;
+    }
+    if (profileId !== 'pf_03') {
+      formState.additionalProfileId = '';
+    }
+  },
+);
+
+watch(
+  () => formState.additionalProfileId,
+  (additionalProfileId) => {
+    if (
+      additionalProfileId &&
+      formState.colorId &&
+      !ADDITIONAL_PROFILE_COLOR_IDS.has(formState.colorId)
+    ) {
+      formState.colorId = '';
     }
   },
 );
@@ -175,20 +201,29 @@ const isSummaryVisible = computed(() => {
 const selectedProfile = computed(
   () => config.profiles.find((option) => option.id === formState.profileId),
 );
+const selectedAdditionalProfile = computed(
+  () => config.additionalProfiles.find((option) => option.id === formState.additionalProfileId),
+);
 const selectedColor = computed(
   () => config.colors.find((option) => option.id === formState.colorId),
 );
 const selectedMilling = computed(() => config.milling.find((option) => option.id === formState.milling.mode));
 const selectedHinges = computed(() => config.hinges.find((option) => option.id === formState.hinges.mode));
 
-const isHingesDisabled = computed(() => formState.profileId === 'slim');
+const isHingesDisabled = computed(() => formState.profileId === 'pf_01');
+const availableColors = computed(() => {
+  if (!selectedAdditionalProfile.value) {
+    return config.colors;
+  }
+  return config.colors.filter((color) => ADDITIONAL_PROFILE_COLOR_IDS.has(color.id));
+});
 
 const colorCost = computed(() => {
   if (!selectedColor.value || !selectedProfile.value) {
     return 0;
   }
   const profileId = selectedProfile.value.id;
-  if (profileId !== 'slim' && profileId !== 'quadro' && profileId !== 'wide') {
+  if (profileId !== 'pf_01' && profileId !== 'pf_02' && profileId !== 'pf_03') {
     return 0;
   }
   const pricePerMeter = selectedColor.value.pricePerMeterByProfile[profileId];
@@ -228,7 +263,7 @@ const millingCost = computed(() => {
   // Если цена зависит от профиля
   if (option.pricePerUnitByProfile && selectedProfile.value) {
     const profileId = selectedProfile.value.id;
-    if (profileId === 'slim' || profileId === 'quadro' || profileId === 'wide') {
+    if (profileId === 'pf_01' || profileId === 'pf_02' || profileId === 'pf_03') {
       const pricePerUnit = option.pricePerUnitByProfile[profileId];
       return qty * pricePerUnit;
     }
@@ -267,6 +302,13 @@ const fillingsCost = computed(() => {
 });
 
 const assemblyTotal = computed(() => (isSummaryVisible.value ? ASSEMBLY_COST : 0));
+const additionalProfileCost = computed(() => {
+  const option = selectedAdditionalProfile.value;
+  if (!option || option.requiredProfileId !== formState.profileId) {
+    return 0;
+  }
+  return option.price;
+});
 
 const totalCost = computed(
   () =>
@@ -275,13 +317,9 @@ const totalCost = computed(
     millingCost.value +
     hingesCost.value +
     fillingsCost.value +
+    additionalProfileCost.value +
     assemblyTotal.value,
 );
-
-const results = computed<CalculatorResults>(() => ({
-  total: totalCost.value,
-  breakdown: [],
-}));
 </script>
 
 <style lang="scss" src="@/styles/pages/calculator/index.scss"></style>

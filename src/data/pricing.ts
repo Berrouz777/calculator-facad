@@ -1,30 +1,64 @@
 export const priceBook = {
-  basePerSquareMeter: 4800,
-  profiles: {
-    slim: 5200,
-    quadro: 6100,
-    wide: 6800,
-  },
   colors: {
-    snow: {
-      slim: 1050,
-      quadro: 550,
-      wide: 550,
+    black_matte: {
+      pf_01: 1000,
+      pf_02: 500,
+      pf_03: 500,
     },
-    warm: {
-      slim: 1100,
-      quadro: 600,
-      wide: 600,
+    black_brush_matte: {
+      pf_01: 1050,
+      pf_02: 550,
+      pf_03: 550,
     },
-    graphite: {
-      slim: 1000,
-      quadro: 500,
-      wide: 500,
+    white_gloss: {
+      pf_01: 1000,
+      pf_02: 500,
+      pf_03: 500,
     },
-    bronze: {
-      slim: 1100,
-      quadro: 600,
-      wide: 600,
+    white_matte: {
+      pf_01: 1000,
+      pf_02: 500,
+      pf_03: 500,
+    },
+    graphite_brush_gloss: {
+      pf_01: 1150,
+      pf_02: 650,
+      pf_03: 650,
+    },
+    graphite_brush_matte: {
+      pf_01: 1200,
+      pf_02: 700,
+      pf_03: 700,
+    },
+    gold_anode: {
+      pf_01: 1000,
+      pf_02: 500,
+      pf_03: 500,
+    },
+    gold_pink: {
+      pf_01: 1000,
+      pf_02: 500,
+      pf_03: 500,
+    },
+    brass: {
+      pf_01: 1200,
+      pf_02: 700,
+      pf_03: 700,
+    },
+    silver_anode: {
+      pf_01: 1000,
+      pf_02: 500,
+      pf_03: 500,
+    },
+    silver_brush: {
+      pf_01: 1050,
+      pf_02: 550,
+      pf_03: 550,
+    },
+    champagne_brush: {
+      pf_01: 1200,
+      pf_02: 700,
+      pf_03: 700,
     },
   },
   accessories: {
@@ -34,9 +68,9 @@ export const priceBook = {
   },
   milling: {
     hinge: {
-      slim: 100,
-      quadro: 250,
-      wide: 250,
+      pf_01: 100,
+      pf_02: 250,
+      pf_03: 250,
     },
     weights: 100,
   },
@@ -51,7 +85,6 @@ export const priceBook = {
     graphiteGlass: 1750,
     bronzeGlass: 1600,
     mirrorSilver: 1410,
-
   },
 };
 

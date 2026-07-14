@@ -1,8 +1,10 @@
 import type { FacadeCalculatorConfig } from '../types/calculator';
 import { priceBook } from './pricing';
-import imgkc from '../img/kc.png';
-import imgf1_99 from '../img/f1-99.png';
-import imgf1_93 from '../img/f1-93.png';
+import imgpf_01 from '../img/pf_01.png';
+import imgpf_02 from '../img/pf_02.png';
+import imgpf_03 from '../img/pf_03.png';
+import imgpf_13 from '../img/pf_13.png';
+import imgpf_14 from '../img/pf_14.png';
 
 export const calculatorConfig: FacadeCalculatorConfig = {
   dimensions: {
@@ -21,51 +23,111 @@ export const calculatorConfig: FacadeCalculatorConfig = {
       defaultValue: 700,
     },
   },
-  basePricePerSqM: priceBook.basePerSquareMeter,
   profiles: [
     {
-      id: 'slim',
-      label: 'KC (45мм)',
-      image: imgkc,
-      pricePerSqM: priceBook.profiles.slim,
+      id: 'pf_01',
+      label: 'PF-01',
+      image: imgpf_01,
     },
     {
-      id: 'quadro',
-      label: 'F1-99 (19х21мм)',
-      image: imgf1_99,
-      pricePerSqM: priceBook.profiles.quadro,
+      id: 'pf_02',
+      label: 'PF-02',
+      image: imgpf_02,
     },
     {
-      id: 'wide',
-      label: 'F1-93 (19х21мм)',
-      image: imgf1_93,
-      pricePerSqM: priceBook.profiles.wide,
+      id: 'pf_03',
+      label: 'PF-03',
+      image: imgpf_03,
+    },
+  ],
+  additionalProfiles: [
+    {
+      id: 'pf_13',
+      label: 'PF-13 250мм',
+      image: imgpf_13,
+      price: 1500,
+      requiredProfileId: 'pf_03',
+    },
+    {
+      id: 'pf_14',
+      label: 'PF-14 250мм',
+      image: imgpf_14,
+      price: 1500,
+      requiredProfileId: 'pf_03',
     },
   ],
   colors: [
     {
-      id: 'snow-white',
-      label: 'Черный',
-      swatch: '#000000',
-      pricePerMeterByProfile: priceBook.colors.snow,
+      id: 'black',
+      label: 'Черный матовый',
+      swatch: '#2a2a2a',
+      pricePerMeterByProfile: priceBook.colors.black_matte,
     },
     {
-      id: 'warm-sand',
-      label: 'Белый',
-      swatch: '#FFFFFF',
-      pricePerMeterByProfile: priceBook.colors.warm,
+      id: 'black_brush_matte',
+      label: 'Черный браш матовый',
+      swatch: 'repeating-linear-gradient(90deg, #1a1a1a 0px, #2d2d2d 1px, #1a1a1a 2px, #333 3px)',
+      pricePerMeterByProfile: priceBook.colors.black_brush_matte,
     },
     {
-      id: 'deep-graphite',
-      label: 'Серебро',
-      swatch: '#C0C0C0',
-      pricePerMeterByProfile: priceBook.colors.graphite,
+      id: 'white_gloss',
+      label: 'Белый глянец',
+      swatch: 'linear-gradient(145deg, #ffffff 0%, #f5f5f5 35%, #ffffff 55%, #ebebeb 100%)',
+      pricePerMeterByProfile: priceBook.colors.white_gloss,
     },
     {
-      id: 'soft-bronze',
-      label: 'Золото',
-      swatch: '#E6D5B8',
-      pricePerMeterByProfile: priceBook.colors.bronze,
+      id: 'white_matte',
+      label: 'Белый матовый',
+      swatch: '#F0F0F0',
+      pricePerMeterByProfile: priceBook.colors.white_matte,
+    },
+    {
+      id: 'graphite_brush_gloss',
+      label: 'Графит браш глянец',
+      swatch: 'linear-gradient(145deg, rgba(255,255,255,.25) 0%, transparent 45%, rgba(255,255,255,.12) 70%, transparent 100%), repeating-linear-gradient(90deg, #525252 0px, #707070 1px, #525252 2px, #656565 3px)',
+      pricePerMeterByProfile: priceBook.colors.graphite_brush_gloss,
+    },
+    {
+      id: 'graphite_brush_matte',
+      label: 'Графит браш матовый',
+      swatch: 'repeating-linear-gradient(90deg, #4a4a4a 0px, #585858 1px, #4a4a4a 2px, #525252 3px)',
+      pricePerMeterByProfile: priceBook.colors.graphite_brush_matte,
+    },
+    {
+      id: 'gold_anode',
+      label: 'Золото анод',
+      swatch: 'linear-gradient(145deg, #f2d96b 0%, #d4af37 40%, #e6c24a 65%, #c9a227 100%)',
+      pricePerMeterByProfile: priceBook.colors.gold_anode,
+    },
+    {
+      id: 'gold_pink',
+      label: 'Золото розовое',
+      swatch: 'linear-gradient(145deg, #f0c4b4 0%, #d49a82 35%, #e8b0a0 55%, #c47a6a 100%)',
+      pricePerMeterByProfile: priceBook.colors.gold_pink,
+    },
+    {
+      id: 'brass',
+      label: 'Латунь браш',
+      swatch: 'linear-gradient(145deg, rgba(255,244,188,.45) 0%, transparent 40%, rgba(255,232,120,.3) 65%, transparent 100%), repeating-linear-gradient(90deg, #c9a030 0px, #ffe878 1px, #c9a030 2px, #d4af37 3px)',
+      pricePerMeterByProfile: priceBook.colors.brass,
+    },
+    {
+      id: 'silver_anode',
+      label: 'Серебро анод',
+      swatch: 'linear-gradient(145deg, #eef1f3 0%, #c4c8cc 35%, #d8dce0 60%, #a8acb0 100%)',
+      pricePerMeterByProfile: priceBook.colors.silver_anode,
+    },
+    {
+      id: 'silver_brush',
+      label: 'Серебро браш',
+      swatch: 'linear-gradient(145deg, rgba(255,255,255,.25) 0%, transparent 45%, rgba(255,255,255,.1) 70%, transparent 100%), repeating-linear-gradient(90deg, #b0b4b8 0px, #d0d4d8 1px, #b0b4b8 2px, #c0c4c8 3px)',
+      pricePerMeterByProfile: priceBook.colors.silver_brush,
+    },
+    {
+      id: 'champagne_brush',
+      label: 'Шампань браш',
+      swatch: 'linear-gradient(145deg, rgba(255,255,255,.3) 0%, transparent 45%, rgba(255,245,220,.2) 70%, transparent 100%), repeating-linear-gradient(90deg, #c9b896 0px, #e8dcc4 1px, #c9b896 2px, #d8c8a8 3px)',
+      pricePerMeterByProfile: priceBook.colors.champagne_brush,
     },
   ],
   accessories: [
@@ -152,6 +214,4 @@ export const calculatorConfig: FacadeCalculatorConfig = {
     },
   },
 };
-
-export const calculatorFields = calculatorConfig;
 
