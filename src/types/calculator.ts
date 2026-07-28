@@ -15,13 +15,33 @@ export interface ProfileOption {
   image: string;
 }
 
-export interface AdditionalProfileOption {
+export interface AdditionalProfileLengthOption {
+  id: string;
+  label: string;
+  price: number;
+}
+
+interface AdditionalProfileBase {
   id: string;
   label: string;
   image: string;
-  price: number;
   requiredProfileId: string;
+  allowedColorIds: string[];
 }
+
+interface FixedAdditionalProfileOption extends AdditionalProfileBase {
+  price: number;
+  lengthOptions?: never;
+}
+
+interface LengthAdditionalProfileOption extends AdditionalProfileBase {
+  price?: never;
+  lengthOptions: AdditionalProfileLengthOption[];
+}
+
+export type AdditionalProfileOption =
+  | FixedAdditionalProfileOption
+  | LengthAdditionalProfileOption;
 
 export interface ColorOption {
   id: string;
@@ -116,6 +136,7 @@ export interface CalculatorFormState {
   width: number | null;
   profileId: string;
   additionalProfileId: string;
+  additionalProfileLengthId: string;
   colorId: string;
   milling: {
     mode: MillingMode | '';

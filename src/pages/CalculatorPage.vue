@@ -1,7 +1,7 @@
 <template>
   <section class="facade-calculator">
     <header class="facade-calculator__header">
-      <h1 class="facade-calculator__eyebrow">Калькулятор фасада</h1>
+      <h1 class="facade-calculator__eyebrow">Калькулятор рассчёта стоимости фасада</h1>
     </header>
 
     <div class="facade-calculator__layout">
@@ -15,9 +15,9 @@
         <CalculatorProfileSection
           :profiles="config.profiles"
           :additional-profiles="config.additionalProfiles"
-          :additional-profiles-disabled="formState.profileId !== 'pf_03'"
           v-model="formState.profileId"
           v-model:additional-profile="formState.additionalProfileId"
+          v-model:additional-profile-length="formState.additionalProfileLengthId"
         />
 
         <CalculatorColorSection
@@ -66,12 +66,6 @@ import { calculatorConfig as config } from '@/data/calculatorFields';
 import type { CalculatorFormState, HingeOption, MillingOption } from '@/types/calculator';
 
 const ASSEMBLY_COST = 1500;
-const ADDITIONAL_PROFILE_COLOR_IDS = new Set([
-  'black',
-  'black_brush_matte',
-  'gold_anode',
-  'brass',
-]);
 
 const normalizeDimension = (value: number | null) =>
   typeof value === 'number' && Number.isFinite(value) ? value : 0;
@@ -81,6 +75,7 @@ const createInitialState = (): CalculatorFormState => ({
   width: null,
   profileId: '',
   additionalProfileId: '',
+  additionalProfileLengthId: '',
   colorId: '',
   milling: {
     mode: '',
@@ -159,8 +154,12 @@ watch(
       formState.hinges.mode = '';
       formState.hinges.quantity = 0;
     }
-    if (profileId !== 'pf_03') {
+    const additionalProfile = config.additionalProfiles.find(
+      (option) => option.id === formState.additionalProfileId,
+    );
+    if (additionalProfile && additionalProfile.requiredProfileId !== profileId) {
       formState.additionalProfileId = '';
+      formState.additionalProfileLengthId = '';
     }
   },
 );
@@ -168,10 +167,21 @@ watch(
 watch(
   () => formState.additionalProfileId,
   (additionalProfileId) => {
+    const additionalProfile = config.additionalProfiles.find(
+      (option) => option.id === additionalProfileId,
+    );
+    if (!additionalProfile) {
+      formState.additionalProfileLengthId = '';
+      return;
+    }
+    if (!additionalProfile.lengthOptions) {
+      formState.additionalProfileLengthId = '';
+    } else {
+      formState.additionalProfileLengthId = additionalProfile.lengthOptions[0]?.id ?? '';
+    }
     if (
-      additionalProfileId &&
       formState.colorId &&
-      !ADDITIONAL_PROFILE_COLOR_IDS.has(formState.colorId)
+      !additionalProfile.allowedColorIds.includes(formState.colorId)
     ) {
       formState.colorId = '';
     }
@@ -215,7 +225,9 @@ const availableColors = computed(() => {
   if (!selectedAdditionalProfile.value) {
     return config.colors;
   }
-  return config.colors.filter((color) => ADDITIONAL_PROFILE_COLOR_IDS.has(color.id));
+  return config.colors.filter((color) =>
+    selectedAdditionalProfile.value?.allowedColorIds.includes(color.id),
+  );
 });
 
 const colorCost = computed(() => {
@@ -306,6 +318,11 @@ const additionalProfileCost = computed(() => {
   const option = selectedAdditionalProfile.value;
   if (!option || option.requiredProfileId !== formState.profileId) {
     return 0;
+  }
+  if (option.lengthOptions) {
+    return option.lengthOptions.find(
+      (lengthOption) => lengthOption.id === formState.additionalProfileLengthId,
+    )?.price ?? 0;
   }
   return option.price;
 });

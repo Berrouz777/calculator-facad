@@ -38,6 +38,14 @@
   cursor: pointer;
   transition: border-color $default-transition, background-color $default-transition;
 
+  &__selector {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    cursor: inherit;
+  }
+
   &__input {
     position: absolute;
     inset: 0;
@@ -109,6 +117,46 @@
     margin: 0;
     font-weight: 600;
     color: $blue;
+  }
+
+  &__lengths {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+    padding: 0 1.4rem 1.4rem;
+  }
+
+  &__length-option {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+
+    input {
+      width: 1.6rem;
+      height: 1.6rem;
+      margin: 0;
+      border: .2rem solid $base-350;
+      border-radius: 50%;
+      background-color: $base-0;
+      cursor: pointer;
+      transition: border-color $default-transition, background-color $default-transition;
+
+      &:checked {
+        border-color: $blue;
+        background-color: $blue;
+        box-shadow: inset 0 0 0 .3rem $base-0;
+      }
+
+      &:focus-visible {
+        outline: .2rem solid rgba($blue, .35);
+        outline-offset: .2rem;
+      }
+    }
   }
 
   &--active {

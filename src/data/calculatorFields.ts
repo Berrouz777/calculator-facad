@@ -5,6 +5,8 @@ import imgpf_02 from '../img/pf_02.png';
 import imgpf_03 from '../img/pf_03.png';
 import imgpf_13 from '../img/pf_13.png';
 import imgpf_14 from '../img/pf_14.png';
+import imgpf_15 from '../img/PF15.png';
+import imgpf_16 from '../img/PF16.png';
 
 export const calculatorConfig: FacadeCalculatorConfig = {
   dimensions: {
@@ -42,11 +44,50 @@ export const calculatorConfig: FacadeCalculatorConfig = {
   ],
   additionalProfiles: [
     {
+      id: 'pf_15',
+      label: 'PF-15',
+      image: imgpf_15,
+      requiredProfileId: 'pf_01',
+      allowedColorIds: ['black', 'gold_anode'],
+      lengthOptions: [
+        {
+          id: '250',
+          label: '250 мм',
+          price: 2000,
+        },
+        {
+          id: '1200',
+          label: '1200 мм',
+          price: 2300,
+        },
+      ],
+    },
+    {
+      id: 'pf_16',
+      label: 'PF-16',
+      image: imgpf_16,
+      requiredProfileId: 'pf_01',
+      allowedColorIds: ['black', 'gold_anode'],
+      lengthOptions: [
+        {
+          id: '250',
+          label: '250 мм',
+          price: 2000,
+        },
+        {
+          id: '1200',
+          label: '1200 мм',
+          price: 2300,
+        },
+      ],
+    },
+    {
       id: 'pf_13',
       label: 'PF-13 250мм',
       image: imgpf_13,
       price: 1500,
       requiredProfileId: 'pf_03',
+      allowedColorIds: ['black', 'black_brush_matte', 'gold_anode', 'brass'],
     },
     {
       id: 'pf_14',
@@ -54,6 +95,7 @@ export const calculatorConfig: FacadeCalculatorConfig = {
       image: imgpf_14,
       price: 1500,
       requiredProfileId: 'pf_03',
+      allowedColorIds: ['black', 'black_brush_matte', 'gold_anode', 'brass'],
     },
   ],
   colors: [
