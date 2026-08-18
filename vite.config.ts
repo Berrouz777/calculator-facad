@@ -3,7 +3,9 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  base: '/calculator-facad/',
+  // GitHub Pages: /calculator-facad/ (задаётся в Actions)
+  // Netlify и локально: /
+  base: process.env.BASE_PATH || '/',
   plugins: [vue()],
   resolve: {
     alias: {
