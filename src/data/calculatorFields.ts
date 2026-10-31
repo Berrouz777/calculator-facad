@@ -249,6 +249,9 @@ export const calculatorConfig: FacadeCalculatorConfig = {
       { id: 'graphiteGlass', label: 'Стекло (Графит)', pricePerSqM: priceBook.fillings.graphiteGlass },
       { id: 'bronzeGlass', label: 'Стекло (Бронза)', pricePerSqM: priceBook.fillings.bronzeGlass },
       { id: 'mirrorSilver', label: 'Стекло Сатин (Б/Ц)', pricePerSqM: priceBook.fillings.mirrorSilver },
+      { id: 'colorlessStrip', label: 'Стекло (Б/Ц полосы)', pricePerSqM: priceBook.fillings.colorlessStrip },
+      { id: 'graphiteStrip', label: 'Стекло (Графит полосы)', pricePerSqM: priceBook.fillings.graphiteStrip },
+      { id: 'bronzeStrip', label: 'Стекло (Бронза полосы)', pricePerSqM: priceBook.fillings.bronzeStrip },
     ],
     customOption: {
       id: 'clientGlass',

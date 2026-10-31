@@ -85,6 +85,9 @@ export const priceBook = {
     graphiteGlass: 1750,
     bronzeGlass: 1600,
     mirrorSilver: 1410,
+    colorlessStrip: 3000,
+    graphiteStrip: 3200,
+    bronzeStrip: 4200,
   },
 };
 
